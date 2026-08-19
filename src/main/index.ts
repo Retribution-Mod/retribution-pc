@@ -64,8 +64,8 @@ if (!IS_VANILLA && !IS_EXTENSION) {
             }
         });
 
-        protocol.handle("equicord", ({ url: unsafeUrl }) => {
-            let url = decodeURI(unsafeUrl).slice("equicord://".length).replace(/\?v=\d+$/, "");
+        protocol.handle("retribution", ({ url: unsafeUrl }) => {
+            let url = decodeURI(unsafeUrl).slice("retribution://".length).replace(/\?v=\d+$/, "");
 
             if (url.endsWith("/")) url = url.slice(0, -1);
 

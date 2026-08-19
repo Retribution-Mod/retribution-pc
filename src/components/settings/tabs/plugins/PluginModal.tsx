@@ -173,7 +173,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     }
 
     const pluginMeta = PluginMeta[plugin.name];
-    const isRetributionPlugin = pluginMeta.folderName.startsWith("src/equicordplugins/") ?? false;
+    const isRetributionPlugin = pluginMeta.folderName.startsWith("src/retributionplugins/") ?? false;
 
     return (
         <Modal

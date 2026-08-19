@@ -25,17 +25,17 @@ import { getEntryPoint, isPluginFile, parseDevs, parseRetributionDevs, parseFile
 
     const args = process.argv.slice(2);
 
-    const equicordFlag = args.includes("--equicord");
+    const retributionFlag = args.includes("--retribution");
     const vencordFlag = args.includes("--vencord");
 
     let dirs: string[];
 
-    if (equicordFlag) {
-        dirs = ["src/equicordplugins/_core", "src/equicordplugins"];
+    if (retributionFlag) {
+        dirs = ["src/retributionplugins/_core", "src/retributionplugins"];
     } else if (vencordFlag) {
         dirs = ["src/plugins", "src/plugins/_core"];
     } else {
-        dirs = ["src/plugins", "src/plugins/_core", "src/equicordplugins/_core", "src/equicordplugins"];
+        dirs = ["src/plugins", "src/plugins/_core", "src/retributionplugins/_core", "src/retributionplugins"];
     }
 
     const outputPath = args.find(a => !a.startsWith("--")) ?? null;

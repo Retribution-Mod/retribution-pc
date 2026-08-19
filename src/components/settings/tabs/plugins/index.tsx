@@ -225,7 +225,7 @@ export default function PluginSettings() {
                 if (!isPluginEnabled(plugin.name)) return false;
                 break;
             case SearchStatus.EQUICORD:
-                if (!PluginMeta[plugin.name].folderName.startsWith("src/equicordplugins/")) return false;
+                if (!PluginMeta[plugin.name].folderName.startsWith("src/retributionplugins/")) return false;
                 break;
             case SearchStatus.VENCORD:
                 if (!PluginMeta[plugin.name].folderName.startsWith("src/plugins/")) return false;

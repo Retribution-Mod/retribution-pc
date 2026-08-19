@@ -130,8 +130,8 @@ export function patchTrayMenu(): void {
         const alreadyPatched = template.some(item => item.label === "Retribution");
         if (isTrayMenu(template) && !alreadyPatched) {
             const insertIndex = findInsertIndex(template);
-            const equicordItems = createRetributionMenuItems();
-            template.splice(insertIndex, 0, ...equicordItems);
+            const retributionItems = createRetributionMenuItems();
+            template.splice(insertIndex, 0, ...retributionItems);
         }
 
         return originalBuildFromTemplate.call(this, template);

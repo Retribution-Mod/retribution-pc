@@ -18,7 +18,7 @@
 
 import { definePluginSettings, migratePluginToSettings, Settings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { getCustomColorString } from "@equicordplugins/customUserColors";
+import { getCustomColorString } from "@retributionplugins/customUserColors";
 import { Devs, RetributionDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { openUserProfile } from "@utils/discord";
