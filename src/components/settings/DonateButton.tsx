@@ -24,11 +24,11 @@ import { ButtonProps } from "@vencord/discord-types";
 import { showToast } from "@webpack/common";
 
 export function DonateButton({
-    equicord = false,
+    retribution = false,
     className,
     ...props
-}: Partial<ButtonProps> & { equicord?: boolean; }) {
-    const link = equicord ? "https://github.com/Retribution-Mod/retribution-pc" : "https://github.com/sponsors/Vendicated";
+}: Partial<ButtonProps> & { retribution?: boolean; }) {
+    const link = retribution ? "https://github.com/Retribution-Mod/retribution-pc" : "https://github.com/sponsors/Vendicated";
     return (
         <Button
             {...props}

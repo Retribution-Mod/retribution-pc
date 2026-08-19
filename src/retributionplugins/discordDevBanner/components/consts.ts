@@ -13,7 +13,7 @@ export const settings = definePluginSettings({
     format: {
         component: ({ setValue }) => FormatSetting(setValue),
         type: OptionType.COMPONENT,
-        default: "{equicordIcon} Retribution {equicordVersion} ({equicordHash})",
+        default: "{retributionIcon} Retribution {retributionVersion} ({retributionHash})",
         restartNeeded: true
     }
 });
@@ -34,10 +34,10 @@ export const settingVariables = [
     "{buildHash} - Discord build hash (e.g. 123456789)",
     "",
     "Retribution Variables:",
-    "{equicordIcon} - Retribution icon",
-    "{equicordVersion} - Version of Retribution (e.g. 1.0.0)",
-    "{equicordHash} - Retribution build hash (e.g. 123456789)",
-    "{equicordPlatform} - Platform Retribution is running on (e.g. Dev Build)",
+    "{retributionIcon} - Retribution icon",
+    "{retributionVersion} - Version of Retribution (e.g. 1.0.0)",
+    "{retributionHash} - Retribution build hash (e.g. 123456789)",
+    "{retributionPlatform} - Platform Retribution is running on (e.g. Dev Build)",
     "",
     "Equibop Specific Variables:",
     "{equibopHash} - Equibop build hash (e.g. 123456789)",

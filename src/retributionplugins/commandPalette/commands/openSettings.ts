@@ -29,11 +29,11 @@ export const DISCORD_SETTINGS_ROUTES: SettingsRoute[] = [
     { route: "authorized_apps", label: "Authorized Apps", keywords: ["oauth", "apps"] },
     { route: "family_center", label: "Family Center", keywords: ["family", "safety"] },
     { route: "advanced", label: "Advanced", keywords: ["developer"] },
-    { route: "equicord_main", label: "Retribution", keywords: ["vencord"] },
-    { route: "equicord_plugins", label: "Retribution Plugins", keywords: ["plugins"] },
-    { route: "equicord_themes", label: "Retribution Themes", keywords: ["themes", "css"] },
-    { route: "equicord_updater", label: "Retribution Updater", keywords: ["update"] },
-    { route: "equicord_changelog", label: "Retribution Changelog", keywords: ["changelog", "news"] }
+    { route: "retribution_main", label: "Retribution", keywords: ["vencord"] },
+    { route: "retribution_plugins", label: "Retribution Plugins", keywords: ["plugins"] },
+    { route: "retribution_themes", label: "Retribution Themes", keywords: ["themes", "css"] },
+    { route: "retribution_updater", label: "Retribution Updater", keywords: ["update"] },
+    { route: "retribution_changelog", label: "Retribution Changelog", keywords: ["changelog", "news"] }
 ];
 
 const ROUTE_ALIASES = new Map<string, string[]>([
@@ -52,11 +52,11 @@ const ROUTE_ALIASES = new Map<string, string[]>([
     ["chat", ["chat_panel"]],
     ["authorized_apps", ["authorized_apps_panel"]],
     ["family_center", ["family_center_panel"]],
-    ["equicord_main", ["equicord_main_panel"]],
-    ["equicord_plugins", ["equicord_plugins_panel"]],
-    ["equicord_themes", ["equicord_themes_panel"]],
-    ["equicord_updater", ["equicord_updater_panel"]],
-    ["equicord_changelog", ["equicord_changelog_panel"]]
+    ["retribution_main", ["retribution_main_panel"]],
+    ["retribution_plugins", ["retribution_plugins_panel"]],
+    ["retribution_themes", ["retribution_themes_panel"]],
+    ["retribution_updater", ["retribution_updater_panel"]],
+    ["retribution_changelog", ["retribution_changelog_panel"]]
 ]);
 
 const ROUTE_LOOKUP = (() => {

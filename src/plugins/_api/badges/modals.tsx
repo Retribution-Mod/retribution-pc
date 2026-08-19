@@ -121,7 +121,7 @@ export function RetributionDonorModal() {
                 </div>
                 <div>
                     <Flex justifyContent="center" style={{ width: "100%" }}>
-                        <DonateButton equicord={true} />
+                        <DonateButton retribution={true} />
                     </Flex>
                 </div>
             </Modal>

@@ -186,58 +186,58 @@ export default definePlugin({
         const layout = originalLayoutBuilder.buildLayout();
         if (originalLayoutBuilder.key !== "$Root") return layout;
         if (!Array.isArray(layout)) return layout;
-        if (layout.some(s => s?.key === "equicord_section")) return layout;
+        if (layout.some(s => s?.key === "retribution_section")) return layout;
 
         const { buildEntry } = this;
 
-        const equicordEntries: SettingsLayoutNode[] = [
+        const retributionEntries: SettingsLayoutNode[] = [
             buildEntry({
-                key: "equicord_main",
+                key: "retribution_main",
                 title: "Retribution",
                 panelTitle: "Retribution Settings",
                 Component: VencordTab,
                 Icon: MainSettingsIcon
             }),
             buildEntry({
-                key: "equicord_plugins",
+                key: "retribution_plugins",
                 title: "Plugins",
                 Component: PluginsTab,
                 Icon: PluginsIcon
             }),
             buildEntry({
-                key: "equicord_themes",
+                key: "retribution_themes",
                 title: "Themes",
                 Component: ThemesTab,
                 Icon: PaintbrushIcon
             }),
             !IS_UPDATER_DISABLED && UpdaterTab && buildEntry({
-                key: "equicord_updater",
+                key: "retribution_updater",
                 title: "Updater",
                 panelTitle: "Retribution Updater",
                 Component: UpdaterTab,
                 Icon: UpdaterIcon
             }),
             buildEntry({
-                key: "equicord_changelog",
+                key: "retribution_changelog",
                 title: "Changelog",
                 Component: ChangelogTab,
                 Icon: LogIcon,
             }),
             buildEntry({
-                key: "equicord_cloud",
+                key: "retribution_cloud",
                 title: "Cloud",
                 panelTitle: "Retribution Cloud",
                 Component: CloudTab,
                 Icon: CloudIcon
             }),
             buildEntry({
-                key: "equicord_backup_restore",
+                key: "retribution_backup_restore",
                 title: "Backup & Restore",
                 Component: BackupAndRestoreTab,
                 Icon: BackupRestoreIcon
             }),
             !IS_STANDALONE && PatchHelperTab && buildEntry({
-                key: "equicord_patch_helper",
+                key: "retribution_patch_helper",
                 title: "Patch Helper",
                 Component: PatchHelperTab,
                 Icon: PatchHelperIcon
@@ -245,11 +245,11 @@ export default definePlugin({
             ...this.customEntries.map(buildEntry)
         ].filter(isTruthy);
 
-        const equicordSection: SettingsLayoutNode = {
-            key: "equicord_section",
+        const retributionSection: SettingsLayoutNode = {
+            key: "retribution_section",
             type: LayoutTypes.SECTION,
             useTitle: () => "Retribution Settings",
-            buildLayout: () => equicordEntries
+            buildLayout: () => retributionEntries
         };
 
         const { settingsLocation } = settings.store;
@@ -272,7 +272,7 @@ export default definePlugin({
             idx += 1;
         }
 
-        layout.splice(idx, 0, equicordSection);
+        layout.splice(idx, 0, retributionSection);
 
         return layout;
     },

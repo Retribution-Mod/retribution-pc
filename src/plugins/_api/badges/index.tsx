@@ -46,7 +46,7 @@ const ContributorBadge: ProfileBadge = {
 };
 
 const RetributionContributorBadge: ProfileBadge = {
-    id: "equicord_contributor_badge",
+    id: "retribution_contributor_badge",
     description: "Retribution Contributor",
     iconSrc: EQUICORD_CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
@@ -250,7 +250,7 @@ export default definePlugin({
 
     getRetributionDonorBadges(userId: string) {
         return RetributionDonorBadges[userId]?.map((badge, idx) => ({
-            id: `equicord_donor_badge_${idx}`,
+            id: `retribution_donor_badge_${idx}`,
             iconSrc: badge.badge,
             description: badge.tooltip,
             position: BadgePosition.START,

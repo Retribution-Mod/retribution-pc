@@ -10,21 +10,21 @@ import { openSettingsPage } from "./openSettings";
 
 const SECTION = "Retribution";
 
-export const equicordCommands: PaletteCommand[] = [
+export const retributionCommands: PaletteCommand[] = [
     {
-        id: "equicord.settings",
+        id: "retribution.settings",
         title: "Open Retribution Settings",
         section: SECTION,
-        keywords: ["equicord", "vencord", "settings"],
+        keywords: ["retribution", "vencord", "settings"],
         icon: GearIcon,
         actions: [{
             id: "run",
             label: "Open Retribution Settings",
-            run: () => void openSettingsPage("equicord_main")
+            run: () => void openSettingsPage("retribution_main")
         }]
     },
     {
-        id: "equicord.quickCss",
+        id: "retribution.quickCss",
         title: "Open QuickCSS",
         section: SECTION,
         keywords: ["css", "quickcss", "editor", "style"],
@@ -36,7 +36,7 @@ export const equicordCommands: PaletteCommand[] = [
         }]
     },
     {
-        id: "equicord.updater",
+        id: "retribution.updater",
         title: "Open Updater",
         section: SECTION,
         keywords: ["update", "updater", "version"],
@@ -45,11 +45,11 @@ export const equicordCommands: PaletteCommand[] = [
         actions: [{
             id: "run",
             label: "Open Updater",
-            run: () => void openSettingsPage("equicord_updater")
+            run: () => void openSettingsPage("retribution_updater")
         }]
     },
     {
-        id: "equicord.changelog",
+        id: "retribution.changelog",
         title: "Open Changelog",
         section: SECTION,
         keywords: ["changelog", "news", "whats new"],
@@ -57,11 +57,11 @@ export const equicordCommands: PaletteCommand[] = [
         actions: [{
             id: "run",
             label: "Open Changelog",
-            run: () => void openSettingsPage("equicord_changelog")
+            run: () => void openSettingsPage("retribution_changelog")
         }]
     },
     {
-        id: "equicord.restart",
+        id: "retribution.restart",
         title: "Restart Discord",
         section: SECTION,
         keywords: ["restart", "reload", "refresh"],
