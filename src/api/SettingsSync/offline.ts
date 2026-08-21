@@ -28,17 +28,20 @@ const toastFailure = (err: any) =>
 
 const logger = new Logger("SettingsSync:Offline", "#39b7e0");
 
+const FORBIDDEN_KEYS = new Set(["__proto__", "constructor", "prototype"]);
+
 function deepMerge<T extends object>(target: T, source: T): T {
-    for (const key in source) {
-        const sourceVal = source[key];
+    for (const key of Object.keys(source as any)) {
+        if (FORBIDDEN_KEYS.has(key)) continue;
+        const sourceVal = (source as any)[key];
 
         if (sourceVal !== null && typeof sourceVal === "object" && !Array.isArray(sourceVal)) {
-            if (target[key] === null || target[key] === undefined || typeof target[key] !== "object" || Array.isArray(target[key])) {
-                target[key] = {} as any;
+            if ((target as any)[key] === null || (target as any)[key] === undefined || typeof (target as any)[key] !== "object" || Array.isArray((target as any)[key])) {
+                (target as any)[key] = {} as any;
             }
-            deepMerge(target[key] as object, sourceVal as object);
+            deepMerge((target as any)[key] as object, sourceVal as object);
         } else {
-            target[key] = sourceVal;
+            (target as any)[key] = sourceVal;
         }
     }
     return target;

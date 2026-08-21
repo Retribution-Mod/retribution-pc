@@ -10,14 +10,17 @@
  * @param defaults Defaults
  * @returns obj
  */
+const FORBIDDEN_KEYS = new Set(["__proto__", "constructor", "prototype"]);
+
 export function mergeDefaults<T>(obj: T, defaults: T): T {
-    for (const key in defaults) {
-        const v = defaults[key];
+    for (const key of Object.keys(defaults as any)) {
+        if (FORBIDDEN_KEYS.has(key)) continue;
+        const v = (defaults as any)[key];
         if (typeof v === "object" && !Array.isArray(v)) {
-            obj[key] ??= {} as any;
-            mergeDefaults(obj[key], v);
+            (obj as any)[key] ??= {} as any;
+            mergeDefaults((obj as any)[key], v);
         } else {
-            obj[key] ??= v;
+            (obj as any)[key] ??= v;
         }
     }
     return obj;
