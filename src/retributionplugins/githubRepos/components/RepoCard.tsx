@@ -13,8 +13,16 @@ import { React } from "@webpack/common";
 import { cl } from "..";
 import { Star } from "./Star";
 
+function openRepoUrl(url: string) {
+    try {
+        const parsed = new URL(url);
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return;
+        window.open(parsed.href, "_blank");
+    } catch { }
+}
+
 export function RepoCard({ repo, showStars, showLanguage }: RepoCardProps) {
-    const handleClick = () => window.open(repo.html_url, "_blank");
+    const handleClick = () => openRepoUrl(repo.html_url);
     const langColor = getLanguageColor(repo?.language);
 
     return (

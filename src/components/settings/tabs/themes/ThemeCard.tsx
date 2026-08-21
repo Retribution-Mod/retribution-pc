@@ -25,6 +25,20 @@ const DownloadIcon = findComponentByCodeLazy("1.42l3.3 3.3V3a1");
 
 const cl = classNameFactory("vc-settings-theme-");
 
+function openSafeUrl(url: string) {
+    try {
+        const normalized = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+        const parsed = new URL(normalized);
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+            showToast("Unsafe website URL");
+            return;
+        }
+        window.open(parsed.href, "_blank");
+    } catch {
+        showToast("Invalid website URL");
+    }
+}
+
 const themeActivationModeOptions: { value: ThemeActivationMode; label: string; }[] = [
     { value: "always", label: "Always on" },
     { value: "light", label: "Light only" },
@@ -126,7 +140,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                         id="open-website"
                         label="Open Website"
                         icon={HomeIcon}
-                        action={() => window.open(theme.website, "_blank")}
+                        action={() => openSafeUrl(theme.website)}
                     />
                 )}
                 {theme.invite && (
