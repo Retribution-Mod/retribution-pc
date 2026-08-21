@@ -48,10 +48,10 @@ function getUnitStr(unit: Units, isOne: boolean, short: boolean) {
 }
 
 /**
- * Forms time into a human readable string link "1 day, 2 hours, 3 minutes and 4 seconds"
- * @param time The time on the specified unit
- * @param unit The unit the time is on
- * @param short Whether to use short units like "d" instead of "days"
+ * Format a duration as a human-readable string, e.g. "1 day, 2 hours, 3 minutes and 4 seconds".
+ * @param time Time value.
+ * @param unit Unit of `time`.
+ * @param short Use short units like "d" instead of "days".
  */
 export function formatDurationVerbose(time: number, unit: Units, short: boolean = false) {
     const { moment } = require("@webpack/common") as typeof import("@webpack/common");
@@ -123,16 +123,10 @@ export function formatDuration(ms: number, human = false) {
 }
 
 /**
- * The `formatDurationMs` function formats a duration in milliseconds into a human-readable string,
- * with the option to include units such as days, hours, minutes, and seconds.
- * @param {number} ms - The `ms` parameter represents the duration in milliseconds that you want to
- * format.
- * @param {boolean} [human=false] - The `human` parameter is a boolean flag that determines whether the
- * duration should be formatted in a human-readable format or not. If `human` is set to `true`, the
- * duration will be formatted as "Xd Xh Xm Xs". If `human` is set to `false` (the default), the
- * duration will be formatted as "XX:XX:XX:XX".
- * @returns The function `formatDurationMs` returns a formatted string representing the duration in
- * milliseconds.
+ * Format a duration in milliseconds as a human-readable string.
+ * @param ms Duration in milliseconds.
+ * @param human If true, output like "1d 2h 3m 4s". Otherwise, "01:02:03:04".
+ * @returns Formatted duration string.
  */
 export function formatDurationMs(ms: number, human: boolean = false, seconds: boolean = true) {
     const format = (n: number) => human ? n : n.toString().padStart(2, "0");
@@ -156,14 +150,14 @@ export function formatDurationMs(ms: number, human: boolean = false, seconds: bo
 }
 
 /**
- * Join an array of strings in a human readable way (1, 2 and 3)
- * @param elements Elements
+ * Join strings with a human-readable list style ("1, 2 and 3").
+ * @param elements Strings to join.
  */
 export function humanFriendlyJoin(elements: string[]): string;
 /**
- * Join an array of strings in a human readable way (1, 2 and 3)
- * @param elements Elements
- * @param mapper Function that converts elements to a string
+ * Join values with a human-readable list style ("1, 2 and 3").
+ * @param elements Values to join.
+ * @param mapper Turns each value into a string.
  */
 export function humanFriendlyJoin<T>(elements: T[], mapper: (e: T) => string): string;
 export function humanFriendlyJoin(elements: any[], mapper: (e: any) => string = s => s): string {
@@ -187,7 +181,7 @@ export function humanFriendlyJoin(elements: any[], mapper: (e: any) => string = 
 }
 
 /**
- * Wrap the text in ``` with an optional language
+ * Wrap text in a code block with an optional language.
  */
 export function makeCodeblock(text: string, language?: string) {
     const chars = "```";

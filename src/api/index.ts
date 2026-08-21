@@ -45,154 +45,148 @@ import * as $Themes from "./Themes";
 import * as $UserSettings from "./UserSettings";
 
 /**
- * An API allowing you to listen to Message Clicks or run your own logic
- * before a message is sent.
+ * Listen for message clicks or run your own logic before a message is sent.
  *
- * If your plugin uses this, you must add MessageEventsAPI to its dependencies.
+ * If your plugin uses this, add MessageEventsAPI to its dependencies.
  */
 export const MessageEvents = $MessageEventsAPI;
 
 /**
- * An API allowing you to create custom notices
- * (snackbars on the top, like the Update prompt).
+ * Show custom notices (top snackbars, like the Update prompt).
  */
 export const Notices = $Notices;
 
 /**
- * An API allowing you to register custom commands.
+ * Register custom commands.
  */
 export const Commands = $Commands;
 
 /**
- * A wrapper around IndexedDB. This can store arbitrarily
- * large data and supports a lot of datatypes (Blob, Map, ...).
- * For a full list, see the mdn link below.
+ * IndexedDB-backed key-value storage. Supports large data and many types
+ * (Blob, Map, ...); see the MDN link for the full list.
  *
- * This should always be preferred over the Settings API if possible, as
- * localstorage has very strict size restrictions and blocks the event loop.
+ * Prefer this over the Settings API when possible — localStorage has tight
+ * size limits and blocks the event loop.
  *
- * Make sure your keys are unique (tip: prefix them with ur plugin name)
- * and please clean up no longer needed entries.
- *
- * This is actually just idb-keyval, so if you're familiar with that, you're golden!
+ * Keep keys unique (prefix them with your plugin name) and delete old entries
+ * you no longer need. This is just idb-keyval under the hood.
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types}
  */
 export const DataStore = $DataStore;
 
 /**
- * An API allowing you to add custom components as message accessories.
+ * Add custom components as message accessories.
  */
 export const MessageAccessories = $MessageAccessories;
 
 /**
- * An API allowing you to add custom buttons in the message popover.
+ * Add custom buttons to the message popover.
  */
 export const MessagePopover = $MessagePopover;
 
 /**
- * An API allowing you to add badges to user profiles.
+ * Add badges to user profiles.
  */
 export const Badges = $Badges;
 
 /**
- * An API allowing you to add custom elements to the server list.
+ * Add custom elements to the server list.
  */
 export const ServerList = $ServerList;
 
 /**
- * An API allowing plugins to add semantic data attributes and limited props
- * to stable Discord layout surfaces without patching them directly.
+ * Attach semantic data attributes and limited props to stable Discord layout
+ * surfaces without directly patching them.
  */
 export const SurfaceClasses = $SurfaceClasses;
 
 /**
- * An API allowing you to add components as message accessories.
+ * Add components as message decorations.
  */
 export const MessageDecorations = $MessageDecorations;
 
 /**
- * An API allowing you to add components to member list users, in both DM's and servers.
+ * Add decorators to member list users, in DMs and servers.
  */
 export const MemberListDecorators = $MemberListDecorators;
 
 /**
- * An API allowing you to persist data.
+ * Persist plugin settings.
  */
 export const Settings = $Settings;
 
 /**
- * An API allowing you to dynamically load styles.
- * a
+ * Load and unload styles dynamically.
  */
 export const Styles = $Styles;
 
 /**
- * An API allowing you to display notifications.
+ * Display notifications.
  */
 export const Notifications = $Notifications;
 
 /**
- * An api allowing you to patch and add/remove items to/from context menus.
+ * Patch context menus and add/remove items.
  */
 export const ContextMenu = $ContextMenu;
 
 /**
- * An API allowing you to add buttons to the chat input.
+ * Add buttons to the chat input.
  */
 export const ChatButtons = $ChatButtons;
 
 /**
- * An API allowing you to add buttons to the header bar or channel toolbar.
+ * Add buttons to the header bar or channel toolbar.
  */
 export const HeaderBar = $HeaderBar;
 
 /**
- * An API allowing you to update and re-render messages.
+ * Update and re-render messages.
  */
 export const MessageUpdater = $MessageUpdater;
 
 /**
- * An API allowing you to get an user setting.
+ * Read a Discord user setting.
  */
 export const UserSettings = $UserSettings;
 
 /**
- * Don't use this
+ * Internal — not for use in plugins.
  */
 export const Themes = $Themes;
 
 /**
- * An API allowing you to add icons to the nickname, in profiles.
+ * Add icons next to nicknames in profiles.
  */
 export const NicknameIcons = $NicknameIcons;
 
 /**
- * An API allowing you to play internal Discord audio files or external audio URLs/URIs.
+ * Play internal Discord audio files or external audio URLs/URIs.
  */
 export const AudioPlayer = $AudioPlayer;
 
 /**
- * An API allowing you to add buttons to the user area panel.
+ * Add buttons to the user area panel.
  */
 export const UserArea = $UserArea;
 
 /**
- * Just used to identify if user is on Retribution as Vencord doesn't have this.
+ * Set to true in Retribution to distinguish it from Vencord.
  */
 export const isRetribution = true;
 
 /**
- * An API allowing you to add other collections where discords game collection is.
+ * Add extra collections alongside Discord's game collection.
  */
 export const ProfileCollections = $ProfileCollections;
 
 /**
- * An API allowing you to add sections near the 'Member Since' area of user profile panels.
+ * Add sections near the "Member Since" area of user profiles.
  */
 export const ProfileSections = $ProfileSections;
 
 /**
- * An API allowing plugins to add items to the GIF picker right-click context menu
- * without conflicting with each other.
+ * Add items to the GIF picker right-click context menu without conflicting
+ * with other plugins.
  */
 export const GifPickerContextMenu = $GifPickerContextMenu;

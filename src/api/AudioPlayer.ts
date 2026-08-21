@@ -16,28 +16,28 @@ export type AudioErrorHandler = ((error: Error) => void);
 export const audioProcessorFunctions: Record<string, AudioProcessor> = {};
 
 export enum AudioType {
-    /** An external URL that follows the Content Security Policy. */
+    /** CSP-compliant external URL. */
     URL = "url",
-    /** A base64-encoded data URI. */
+    /** Base64 data URI. */
     DATA = "data-uri",
-    /** A Blob URI. */
+    /** Blob URI. */
     BLOB = "blob",
-    /** A file path. */
+    /** Local file path. */
     PATH = "file-path",
-    /** An internal Discord audio filename (e.g. "discodo"). */
+    /** Built-in Discord audio filename, like "discodo". */
     DISCORD = "discord",
-    /** Any other unrecognized audio type. */
+    /** Anything else we didn't recognise. */
     OTHER = "other"
 }
 
 export interface PreprocessAudioData {
-    /** The original audio string passed to the player. */
+    /** Audio string the player received. */
     audio: string;
-    /** The read-only type of audio of the original audio string. */
+    /** Detected audio type. Read-only. */
     readonly type: AudioType;
-    /** The volume of the original audio between 0 and 100. */
+    /** Volume from 0 to 100. */
     volume: number;
-    /** The playback speed of the original audio between 0.0625 and 16. */
+    /** Playback speed from 0.0625 to 16. */
     speed: number;
 }
 
@@ -65,60 +65,60 @@ export interface AudioPlayerInternal {
 }
 
 export interface AudioPlayerInterface {
-    /** The internal Discord audio filename (e.g. "discodo"), a data URI, or an external URL that follows the CSP. */
+    /** Audio to play: a built-in Discord filename, a data URI, or a CSP-compliant URL. */
     audio: string;
-    /** The read-only type of audio determined during processing. */
+    /** Audio type detected during processing. Read-only. */
     readonly type: AudioType;
-    /** The duration of the audio in seconds, or null if not yet loaded. */
+    /** Duration in seconds, or null while loading. */
     readonly duration: Promise<number> | null;
-    /** The current time of the audio in seconds, or null if not yet loaded. */
+    /** Current playback time in seconds, or null while loading. */
     time: Promise<number> | null;
-    /** The paused state of the audio, or null if not yet loaded. */
+    /** Whether the audio is paused, or null while loading. */
     paused: Promise<boolean> | null;
-    /** The muted state of the audio, or null if not yet loaded. */
+    /** Whether the audio is muted, or null while loading. */
     muted: Promise<boolean> | null;
-    /** The volume of the audio between 0 and 100. */
+    /** Volume from 0 to 100. */
     volume: number;
-    /** The playback speed of the audio between 0.0625 and 16. */
+    /** Playback speed from 0.0625 to 16. */
     speed: number;
-    /** Whether to load the audio immediately. If persistent is false, this will only apply until the first playback. */
+    /** Load the audio as soon as the player is created. If not persistent, this only lasts until the first play. */
     preload: boolean;
-    /** Whether the audio element is persistent and not recreated for every playback. */
+    /** Keep the audio element alive between plays. If true, call delete() to free it. */
     persistent: boolean;
-    /** Preloads the audio before playback. Automatically called when persistent is true. */
+    /** Preload the audio. Called automatically when persistent is true. */
     load(): void;
-    /** Sets the audio to loop until paused or stopped. */
+    /** Loop the audio until paused or stopped. */
     loop(): void;
-    /** Plays the audio. */
+    /** Play the audio. */
     play(): void;
-    /** Pauses the audio. */
+    /** Pause the audio. */
     pause(): void;
-    /** Stops the audio. */
+    /** Stop the audio. */
     stop(): void;
-    /** Plays the audio from the beginning. */
+    /** Restart playback from the beginning. */
     restart(): void;
-    /** Seeks to a specific time in seconds. */
+    /** Jump to a position in seconds. */
     seek(time: number): void;
-    /** Mutes the audio. */
+    /** Mute the audio. */
     mute(): void;
-    /** Unmutes the audio. */
+    /** Unmute the audio. */
     unmute(): void;
-    /** Deletes the audio element. Necessary if persistent is true. */
+    /** Destroy the audio element. Required if persistent is true. */
     delete(): void;
 }
 
 export interface AudioPlayerOptions {
-    /** The volume of the audio, between 0 and 100, defaulting to 100. */
+    /** Volume from 0 to 100. Defaults to 100. */
     volume?: number;
-    /** The playback speed of the audio, between 0.0625 and 16, defaulting to 1. */
+    /** Playback speed from 0.0625 to 16. Defaults to 1. */
     speed?: number;
-    /** Whether to preload the audio as soon as the player is created. */
+    /** Preload the audio immediately. */
     preload?: boolean;
-    /** Whether the audio element is persistent and not recreated for every playback. If persistent, you must call delete() to free the memory. Defaults to false. */
+    /** Keep the audio element alive between plays. If true, you must call delete() to free it. Defaults to false. */
     persistent?: boolean;
-    /** An optional callback that is called every time the audio finishes playing. */
+    /** Called each time the audio finishes playing. */
     onEnded?: AudioCallback;
-    /** An optional error handler that is called when an error occurs during audio playback. */
+    /** Called when playback hits an error. */
     onError?: AudioErrorHandler;
 }
 
@@ -168,15 +168,15 @@ class AudioPlayerWrapper implements AudioPlayerInterface {
 }
 
 /**
- * Creates an audio player.
- * @param audio The internal Discord audio filename (e.g. "discodo"), a data URI, or an external URL that follows the CSP.
- * @param options Additional options for the audio player.
- * @param options.volume The volume of the audio, between 0 and 100, defaulting to 100.
- * @param options.speed The playback speed of the audio, between 0.0625 and 16, defaulting to 1.
- * @param options.preload Whether to load the audio immediately. If persistent is false, this will only apply until the first playback.
- * @param options.persistent Whether the audio element is persistent and not recreated for every playback. If persistent, you must call delete() to free the memory. Defaults to false.
- * @param options.onEnded An optional callback that is called every time the audio finishes playing.
- * @param options.onError An optional error handler that is passed an Error object when an error occurs during audio playback.
+ * Create an audio player.
+ * @param audio Discord audio filename, data URI, or CSP-compliant URL.
+ * @param options Audio player options.
+ * @param options.volume Volume from 0 to 100. Defaults to 100.
+ * @param options.speed Playback speed from 0.0625 to 16. Defaults to 1.
+ * @param options.preload Preload the audio immediately. If not persistent, this only lasts until the first play.
+ * @param options.persistent Keep the audio element alive between plays. If true, call delete() to free it. Defaults to false.
+ * @param options.onEnded Called each time the audio finishes playing.
+ * @param options.onError Called when playback hits an error.
  * @return The created audio player.
  */
 export function createAudioPlayer(
@@ -195,15 +195,15 @@ export function createAudioPlayer(
 }
 
 /**
- * Plays an audio instantly and returns the player.
- * @param audio The internal Discord audio filename (e.g. "discodo"), a data URI, or an external URL that follows the CSP.
- * @param options Additional options for the audio player.
- * @param options.volume The volume of the audio, between 0 and 100, defaulting to 100.
- * @param options.speed The playback speed of the audio, between 0.0625 and 16, defaulting to 1.
- * @param options.preload Whether to load the audio immediately. If persistent is false, this will only apply until the first playback.
- * @param options.persistent Whether the audio element is persistent and not recreated for every playback. If persistent, you must call delete() to free the memory. Defaults to false.
- * @param options.onEnded An optional callback that is called every time the audio finishes playing.
- * @param options.onError An optional error handler that is passed an Error object when an error occurs during audio playback.
+ * Play an audio immediately and return the player.
+ * @param audio Discord audio filename, data URI, or CSP-compliant URL.
+ * @param options Audio player options.
+ * @param options.volume Volume from 0 to 100. Defaults to 100.
+ * @param options.speed Playback speed from 0.0625 to 16. Defaults to 1.
+ * @param options.preload Preload the audio immediately. If not persistent, this only lasts until the first play.
+ * @param options.persistent Keep the audio element alive between plays. If true, call delete() to free it. Defaults to false.
+ * @param options.onEnded Called each time the audio finishes playing.
+ * @param options.onError Called when playback hits an error.
  * @return The created audio player.
  */
 export function playAudio(audio: string, options: AudioPlayerOptions = {}): AudioPlayerInterface {
@@ -213,9 +213,9 @@ export function playAudio(audio: string, options: AudioPlayerOptions = {}): Audi
 }
 
 /**
- * Identifies the type of audio based on its string.
- * @param audio The audio string to identify.
- * @returns The identified AudioType.
+ * Work out the audio type from its string.
+ * @param audio Audio string to check.
+ * @returns Detected audio type.
  */
 export function identifyAudioType(audio: string): AudioType {
     if (defaultAudioNames().includes(audio)) return AudioType.DISCORD;
@@ -233,23 +233,23 @@ export function identifyAudioType(audio: string): AudioType {
 }
 
 /**
- * Adds a function to process an audio before it is played.
- * @param key A unique identifier for this audio processor. Plugin name is recommended.
- * @param processor A function that takes a data object with audio, volume (0-100), and type (AudioType) attributes, and modifies the audio and volume in place.
+ * Register an audio processor that runs before playback.
+ * @param key Unique key for this processor. Your plugin name is a good choice.
+ * @param processor Function that receives audio data and can mutate the audio and volume in place.
  */
 export function addAudioProcessor(key: string, processor: AudioProcessor): void {
     audioProcessorFunctions[key] = processor;
 }
 
 /**
- * Removes an audio processor by its key.
- * @param key The unique identifier of the audio processor to remove.
+ * Remove an audio processor by key.
+ * @param key Key of the processor to remove.
  */
 export function removeAudioProcessor(key: string): void {
     delete audioProcessorFunctions[key];
 }
 
-/** Returns an array of all internal Discord audio filenames. */
+/** All built-in Discord audio filenames. */
 export function defaultAudioNames(): string[] {
     defaultSounds ??= (findDefaultSounds.keys() || []).map(key => {
         const match = key.match(/((?:\w|-)+)\.mp3$/);

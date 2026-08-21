@@ -30,27 +30,27 @@ export const enum BadgePosition {
 
 export interface ProfileBadge {
     /**
-     * Badge id, unused by vencord, required by discord
+     * Badge id; unused by Vencord, but Discord needs it.
      */
     id: string,
-    /** The tooltip to show on hover. Required for image badges */
+    /** Tooltip shown on hover. Required for image badges. */
     description?: string;
-    /** Custom component for the badge (tooltip not included) */
+    /** Custom badge component (tooltip not included). */
     component?: ComponentType<ProfileBadge & BadgeUserArgs>;
-    /** The custom image to use */
+    /** Custom badge image. */
     iconSrc?: string;
     link?: string;
-    /** Action to perform when you click the badge */
+    /** Click handler for the badge. */
     onClick?(event: React.MouseEvent, props: ProfileBadge & BadgeUserArgs): void;
-    /** Action to perform when you right click the badge */
+    /** Right-click handler for the badge. */
     onContextMenu?(event: React.MouseEvent, props: ProfileBadge & BadgeUserArgs): void;
-    /** Should the user display this badge? */
+    /** Whether this badge should show for the user. */
     shouldShow?(userInfo: BadgeUserArgs): boolean;
-    /** Optional props (e.g. style) for the badge, ignored for component badges */
+    /** Optional props, like inline styles. Ignored for component badges. */
     props?: HTMLProps<HTMLImageElement>;
-    /** Insert at start or end? */
+    /** Place the badge at the start or end? */
     position?: BadgePosition;
-    /** The badge name to display, Discord uses this. Required for component badges */
+    /** Badge name Discord displays. Required for component badges. */
     key?: string;
 
     /**
@@ -63,8 +63,8 @@ export interface ProfileBadge {
 const Badges = new Set<ProfileBadge>();
 
 /**
- * Register a new badge with the Badges API
- * @param badge The badge to register
+ * Register a badge with the Badges API.
+ * @param badge Badge to register.
  */
 export function addProfileBadge(badge: ProfileBadge) {
     badge.component &&= ErrorBoundary.wrap(badge.component, { noop: true });
@@ -72,8 +72,8 @@ export function addProfileBadge(badge: ProfileBadge) {
 }
 
 /**
- * Unregister a badge from the Badges API
- * @param badge The badge to remove
+ * Unregister a badge.
+ * @param badge Badge to remove.
  */
 export function removeProfileBadge(badge: ProfileBadge) {
     return Badges.delete(badge);
@@ -81,7 +81,7 @@ export function removeProfileBadge(badge: ProfileBadge) {
 
 /**
  * Inject badges into the profile badges array.
- * You probably don't need to use this.
+ * You probably don't need this.
  */
 export function _getBadges(args: BadgeUserArgs) {
     const badges = [] as ProfileBadge[];
