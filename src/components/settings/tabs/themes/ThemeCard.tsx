@@ -240,7 +240,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                     )}
                     {!!theme.invite && (
                         <Link
-                            href={`https://discord.gg/7CWcwZZGWr
+                            href={`https://discord.gg/GNrNbGPhZv
                             onClick={async e => {
                                 e.preventDefault();
                                 theme.invite != null &&

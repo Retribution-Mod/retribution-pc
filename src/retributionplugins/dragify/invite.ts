@@ -129,7 +129,7 @@ async function fetchReusableInvite(guildId: string, inviteChannelId: string) {
 }
 
 function getInviteUrl(code: string) {
-    return `https://discord.gg/7CWcwZZGWr
+    return `https://discord.gg/GNrNbGPhZv
 }
 
 export async function createInvite(guildId: string, currentChannel: Channel, settings: InviteSettings): Promise<string | null> {

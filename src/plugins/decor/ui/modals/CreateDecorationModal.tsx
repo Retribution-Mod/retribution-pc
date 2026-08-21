@@ -128,7 +128,7 @@ function CreateDecorationModal(props: RenderModalProps) {
                 </div>
                 <HelpMessage messageType={HelpMessageTypes.INFO} className={Margins.bottom8}>
                     To receive updates on your decoration's review, join <Link
-                        href={`https://discord.gg/7CWcwZZGWr
+                        href={`https://discord.gg/GNrNbGPhZv
                         onClick={async e => {
                             e.preventDefault();
                             if (!GuildStore.getGuild(GUILD_ID)) {

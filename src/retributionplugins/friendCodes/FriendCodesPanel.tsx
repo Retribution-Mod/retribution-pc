@@ -55,7 +55,7 @@ function FriendInviteCard({ invite }: { invite: FriendInvite; }) {
                     <CopyButton
                         copyText="Copy"
                         copiedText="Copied!"
-                        onClick={() => copyToClipboard(`https://discord.gg/7CWcwZZGWr)}
+                        onClick={() => copyToClipboard(`https://discord.gg/GNrNbGPhZv)}
                     />
                 </Flex>
             </Flex>

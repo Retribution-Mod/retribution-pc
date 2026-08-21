@@ -31,7 +31,7 @@ For browser users, load the unpacked extension from `dist/chromium-unpacked` or 
 
 ## Resources
 
-- Discord: https://discord.gg/7CWcwZZGWr
+- Discord: https://discord.gg/GNrNbGPhZv
 - GitHub: https://github.com/Retribution-Mod/retribution-pc
 - Mobile plugins/themes/fonts: https://plugins-list.pages.dev and the linked community sources
 
