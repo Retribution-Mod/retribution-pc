@@ -98,10 +98,15 @@ export async function translate(kind: "received" | "sent", text: string): Promis
 }
 
 async function googleTranslate(text: string, sourceLang: string, targetLang: string): Promise<TranslationValue> {
+    const apiKey = settings.store.googleApiKey;
+    if (!apiKey) {
+        throw new Error("Google Translate API key is not configured.");
+    }
+
     const url = "https://translate-pa.googleapis.com/v1/translate?" + new URLSearchParams({
         "params.client": "gtx",
         "dataTypes": "TRANSLATION",
-        "key": "AIzaSyDLEeFI5OtFBwYBIoK_jj5m32rZK5CkCXA", // some google API key
+        "key": apiKey,
         "query.sourceLanguage": sourceLang,
         "query.targetLanguage": targetLang,
         "query.text": text,

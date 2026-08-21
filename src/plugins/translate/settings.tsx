@@ -70,6 +70,12 @@ export const settings = definePluginSettings({
         description: "Your Kagi session token (from kagi.com/settings?p=user_details)",
         default: ""
     },
+    googleApiKey: {
+        type: OptionType.STRING,
+        displayName: "Google Translate API Key",
+        description: "Your Google Translate API key (if left blank, Google Translate will be unavailable)",
+        default: ""
+    },
     autoTranslate: {
         type: OptionType.BOOLEAN,
         description: "Automatically translate your messages before sending. You can also Shift+click or right-click the translate button to toggle this",
@@ -94,6 +100,9 @@ export const settings = definePluginSettings({
     },
     kagiSession: {
         hidden() { return this.store.service !== "kagi"; }
+    },
+    googleApiKey: {
+        hidden() { return this.store.service !== "google"; }
     }
 }).withPrivateSettings<{
     dismissedAutoTranslateAlert?: boolean;

@@ -109,7 +109,7 @@ export const settings = definePluginSettings({
     },
     apiKey: {
         displayName: "API Key",
-        description: "Last.fm API key. Not required but highly recommended to avoid rate limiting with our shared key",
+        description: "Last.fm API key. Required: no shared key is included for security.",
         type: OptionType.STRING,
     },
     username: {
