@@ -35,6 +35,10 @@ For browser users, load the unpacked extension from `dist/chromium-unpacked` or 
 - GitHub: https://github.com/Retribution-Mod/retribution-pc
 - Mobile plugins/themes/fonts: https://plugins-list.pages.dev and the linked community sources
 
+## Attribution
+
+retribution-pc is built from the [Vencord](https://github.com/Vendicated/Vencord) and [Revenge](https://github.com/revenge-mod) ecosystems. See [ATTRIBUTION.md](ATTRIBUTION.md) for the full attribution and license details for the original work.
+
 ## License
 
 Licensed under GPL-3.0-or-later.
